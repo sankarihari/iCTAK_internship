@@ -59,7 +59,7 @@ const Home = () => {
   return (
     <div>
       <Container>
-
+        
         <Left>
           <Applogo>
             <TheaterComedy style={{ fontSize: 50 }} />
@@ -68,11 +68,11 @@ const Home = () => {
             <b>MovieMania</b>
           </Appname>
         </Left>
-        
+
         <Wrapper>
           <Title>
             <h1 style={{ fontSize: 69 }}><strong>Enjoy latest movies</strong></h1>
-            <h4 style={{ fontFamily: 'Monospace'  }}>Join today.Cancel anytime.</h4>
+            <h4 style={{ fontFamily: 'Monospace' }}>Join today.Cancel anytime.</h4>
             <h5 style={{ fontFamily: 'Cursive', fontSize: 15 }}>GET STARTED</h5>
             <Button href="/signup" style={{ width: '30%' }} variant="contained" endIcon={<KeyboardArrowRight />}>Signup</Button>
           </Title>
@@ -83,8 +83,8 @@ const Home = () => {
               Login
             </Link>
           </Info>
-          </Wrapper>
-          
+        </Wrapper>
+
       </Container>
     </div>
   );

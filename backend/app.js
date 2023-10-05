@@ -17,6 +17,9 @@ app.use('/api', postRoute);
 const reviewRoute = require("./routes/reviewRoute")
 app.use('/api',reviewRoute);
 
+const ticketRoute = require("./routes/ticketRoute")
+app.use('/api',ticketRoute);
+
 
 const PORT = process.env.PORT;
 app.listen(PORT,()=>{

@@ -60,18 +60,16 @@ const Header = () => {
                 </Left>
                 <Right>
                     <MenuItem>
-                        <a class="nav-link active" aria-current="page" href="/userdashboard"><Home /></a>
+                        <a className="nav-link active" aria-current="page" href="/userdashboard"><Home /></a>
                     </MenuItem>
                     <MenuItem>
-                    <a class="nav-link active" aria-current="page" href=""><AccountCircle fontSize="large"/></a>
+                        <a className="nav-link active" aria-current="page" href=""><AccountCircle fontSize="large" /></a>
                     </MenuItem>
                     <MenuItem>
-                    <a class="nav-link active" aria-current="page" href="/"><Logout fontSize="large"/></a>
+                        <a className="nav-link active" aria-current="page" href="/"><Logout fontSize="large" /></a>
                     </MenuItem>
                 </Right>
-
             </Wrapper>
-
         </Container>
     );
 }

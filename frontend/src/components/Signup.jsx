@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100vw;
@@ -65,7 +65,7 @@ const Text = styled.a`
 `;
 
 const Signup = () => {
-  const initialValues = { username: "", email:"", password: "" };
+  const initialValues = { username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setisSubmit] = useState(false);
@@ -74,23 +74,22 @@ const Signup = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setisSubmit(true);
-    
-		axios.post("http://localhost:5000/api/signup", formValues)
-    .then((response)=>{
-      console.log(response);
-      if(response.data.message==="Registered successfuly"){
-        alert(response.data.message);
-        navigate('/userdashboard')
-      }
-    })
-    .catch(err=>console.log((err)))
+
+    axios.post("http://localhost:5000/api/signup", formValues)
+      .then((response) => {
+        console.log(response);
+        if (response.data.message === "Registered successfuly") {
+          alert(response.data.message);
+          navigate('/userdashboard')
+        }
+      })
+      .catch(err => console.log((err)))
   };
 
   useEffect(() => {
@@ -119,21 +118,20 @@ const Signup = () => {
       errors.password = "Password is required"
     } else if (values.password.length < 4) {
       errors.password = "Minimum 4 characters required!";
-    } else if (values.password.length > 8) {
+    } else if (values.password.length > 14) {
       errors.password = "Password can't exceed more than 8 characters!";
     }
     return errors;
 
-  }
+  };
+
   return (
     <div>
-
       <Container>
-     
         <Wrapper>
           <Title>CREATE AN ACCOUNT</Title>
           <Form onSubmit={handleSubmit}>
-          <Input
+            <Input
               type="text"
               name="name"
               placeholder="Fullname"

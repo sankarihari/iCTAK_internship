@@ -34,7 +34,7 @@ const Button = styled.button`
 `;
 
 
-const Moviepage = () => {    
+const Moviepage = (id) => {    
   const navigate = useNavigate();
   // const [data,setData]=useState([]);
 
@@ -59,17 +59,17 @@ const Moviepage = () => {
       <Container>
         <Wrapper>
           {moviepage.map((item,index) => (
-            <div class="card2 mb-3 " >
-              <div class="row g-0">
-                <div class="col-md-3">
-                  <img src={item.img_url} class="img-fluid rounded-start" alt="..." />
+            <div className="card2 mb-3 " >
+              <div className="row g-0">
+                <div className="col-md-3">
+                  <img src={item.img_url} className="img-fluid rounded-start" alt="..." />
                 </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-                    <h1 class="card-title">{item.title}</h1>
-                    <h6 class="card-title">{item.category}</h6>
+                <div className="col-md-7">
+                  <div className="card-body">
+                    <h1 className="card-title">{item.title}</h1>
+                    <h6 className="card-title">{item.category}</h6>
                     <br></br>
-                    <p class="card-text"><strong>{item.content}</strong></p>
+                    <p className="card-text"><strong>{item.content}</strong></p>
                     <Content>
                       <Left>
                         <Rating name="read-only" value={item.rating} readOnly />

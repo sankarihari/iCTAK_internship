@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const Container = styled.div`
@@ -76,7 +76,6 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-
   };
 
   const handleSubmit = (e) => {
@@ -84,18 +83,22 @@ const Login = () => {
     setFormErrors(validate(formValues));
     setisSubmit(true);
     axios.post("http://localhost:5000/api/login", formValues)
-    .then((response)=>{
-     console.log(response);
-     if(response.data.message==="login successfully"){
-      alert(response.data.message)
-      navigate('/userdashboard')
-     }
-     else{
-      alert(response.data.message)
-     }
-    })
-
-
+      .then((response) => {
+        console.log(response);
+        if (response.data.message === "login successfully") {
+          const token = response.data.token;
+          const userid = response.data.data._id;
+          console.log(token);
+          console.log(userid);
+          sessionStorage.setItem("userToken", token);
+          sessionStorage.setItem("userId", userid);
+          alert(response.data.message)
+          navigate('/userdashboard')
+        }
+        else {
+          alert(response.data.message)
+        }
+      })
   };
 
   useEffect(() => {
@@ -119,15 +122,11 @@ const Login = () => {
       errors.password = "Password can't exceed more than 8 characters!";
     }
     return errors;
-
   }
 
   return (
-
     <div>
-
       <Container>
-       
         <Wrapper>
           <Title>LOGIN</Title>
           <Form onSubmit={handleSubmit}>

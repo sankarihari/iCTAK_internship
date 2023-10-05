@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import styled from 'styled-components';
 import { Button } from '@mui/material';
 import Footer from '../components/Footer';
 import { Add, Remove } from '@mui/icons-material';
+import axios from 'axios';
 
 
 const Container = styled.div`
@@ -38,6 +39,29 @@ const Info = styled.div`
 
 
 const Booking = () => {
+      const[add, setAdd] = useState(0);
+      const [data, setData] = useState({ showtime: '', ticket: '' });
+    const inputHandler = (e) => {
+        const { name, value } = e.target;
+        setData({
+            ...data, [name]: value
+        })
+        console.log(data)
+    }
+    const addReview = () => {
+        console.log("submit clicked");
+        axios.post("http://localhost:5000/api/review")
+            .then((response) => {
+                console.log(response);
+                if (response.data.message === " Booked") {
+                    alert(response.data.message);
+                   
+                } else {
+                    alert(response.data.message);
+                }
+            })
+            .catch(err => console.log(err))
+        }
     return (
         <Container>
             <Header />            
@@ -60,16 +84,20 @@ const Booking = () => {
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Show time </h5>
-                                <Button variant="outlined" color="error">10:00pm</Button>
-                                <Button variant="outlined" color="success">10:00pm</Button>
-                                <Button variant="outlined">10:00pm</Button>
-                            </div>
-                            <div class="card-body">
+                                <Button variant="outlined" color="error">10:00 AM</Button>
+                                <Button variant="outlined" color="success">5:00 PM</Button>
+                                <Button variant="outlined">9:00 PM</Button> 
+                               
+                                <input name="showtime" value={data.showtime} onChange={inputHandler}   type="text" />
+
                                 <h5 class="card-title">No.of ticket</h5>
-                                <Button variant="Text" color="error"><Add/></Button>
-                                <Button variant="outlined">4</Button>
-                                <Button variant="Text" color="success"><Remove/></Button>
+                                <Button variant="Text" color="error" onClick={()=> setAdd(add+1)}><Add/></Button>
+                                <Button variant="outlined" onClick={()=>setAdd(0)}>{add}</Button>
+                                <Button variant="Text" color="success" onClick={()=>setAdd(add-1)}  disabled={add===0}><Remove/></Button>
+                                <Button variant="outlined">submit</Button>
                             </div>
+                           
+                            
                         </div>
                     </div>
                 </div>
